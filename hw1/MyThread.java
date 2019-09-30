@@ -8,12 +8,12 @@ import java.nio.file.Files;
 public class MyThread extends Thread {
     public String string;
 
-   public MyThread(String string) {
-       this.string = string;
-  }
+    public MyThread(String string) {
+        this.string = string;
+    }
 
-   @Override
-  public void run() {
+    @Override
+    public void run() {
         String extension = string.substring(string.lastIndexOf('/')+1);
         URL url = null;
         try {
@@ -26,11 +26,17 @@ public class MyThread extends Thread {
             inputStream = url.openStream();
         } catch (IOException e) {
             e.printStackTrace();
-       }
-       try {
-           Files.copy(inputStream, new File(extension).toPath());
-       } catch (IOException e) {
-           e.printStackTrace();
-       }
-   }
+        }
+        try {
+            boolean xst = new File(extension).exists();
+            int counter = 0;
+                while (xst) { // фикс одинаковых файлов
+                    xst = new File(extension + "_" + counter).exists();
+                    counter++;
+                }
+                Files.copy(inputStream, new File(extension + "_" +counter).toPath());
+            } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
