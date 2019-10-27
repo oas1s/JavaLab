@@ -1,3 +1,4 @@
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -8,20 +9,14 @@ public class MyTape extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("newtape.jsp");
+        requestDispatcher.forward(req,resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String urlsSingle = req.getParameter("url");
-        String[] urls = urlsSingle.split(" ");
-        MyThread[] threads = new MyThread[urls.length];
-        for (int i = 0; i <urls.length; i++) {
-            threads[i] = new MyThread(urls[i]);
-            threads[i].start();
-        }
-        for (int i = 0; i <urls.length ; i++) {
-            threads[i].join();
-        }
+        String[] urls = req.getParameter("url").split(" ");
+        Downloader downloader = new Downloader();
+        downloader.download(urls);
     }
 }
