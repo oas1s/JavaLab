@@ -1,4 +1,6 @@
-package users;
+package main.java.users;
+
+import main.java.users.SocketClient;
 
 import java.util.Scanner;
 

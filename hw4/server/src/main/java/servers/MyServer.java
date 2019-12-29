@@ -1,4 +1,6 @@
-package servers;
+package main.java.servers;
+
+import main.java.utills.MD5Utill;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,9 +8,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -43,6 +43,7 @@ public class MyServer {
         // связь с одним клиентом
         private Socket clientSocket;
         private BufferedReader in;
+        private int id;
 
 
         ClientHandler(Socket socket) {
@@ -50,13 +51,6 @@ public class MyServer {
             // добавляем текущее подключение в список
             clients.add(this);
             System.out.println("New client");
-            String SQLreq =
-            try {
-                Connection connection = ConnectionMain.main();
-                PreparedStatement statement = connection.prepareStatement();
-            } catch (SQLException e) {
-                throw new IllegalStateException(e);
-            }
         }
 
         public void run() {
@@ -74,7 +68,36 @@ public class MyServer {
                             out.println("bye");
                         }
                         break;
-                    } else {
+                    }
+                    else if(inputLine.startsWith("reg")) {
+                        ConnectionToDB connectionToDB = new ConnectionToDB();
+                        Connection connection = connectionToDB.getInstance();
+                        String sql = "INSERT INTO javalab.users(`name`,`password`) VALUES(?,?)";
+                        String sql2 = "SELECT * FROM javalab.users WHERE (name = ?)";
+                        PreparedStatement stmt = connection.prepareStatement(sql);
+                        PreparedStatement stmt2 = connection.prepareStatement(sql2);
+                        String password = inputLine.split(" ")[2];
+                        MD5Utill md5Utill = new MD5Utill();
+                        password = md5Utill.md5Custom(password);
+                        stmt.setString(1 , inputLine.split(" ")[1]);
+                        stmt.setString(2 , password);
+                        stmt2.setString(1 , inputLine.split(" ")[1]);
+                        stmt.executeUpdate();
+                        ResultSet resultSet = stmt2.executeQuery();
+                        if (resultSet.next()) {
+                            this.id = resultSet.getInt("id");
+                        }
+                    }
+                    else {
+                        ConnectionToDB connectionToDB = new ConnectionToDB();
+                        Connection connection = connectionToDB.getInstance();
+                        String sql = "INSERT INTO javalab.messages(`text`,`id_from`,`date`) VALUES(?, ?, ?)";
+                        PreparedStatement stmt = connection.prepareStatement(sql);
+                        Date date = new Date(new java.util.Date().getTime());
+                        stmt.setString(1 , inputLine);
+                        stmt.setInt(2 , id);
+                        stmt.setDate(3, date);
+                        stmt.executeUpdate();
                         for (ClientHandler client : clients) {
                             PrintWriter out = new PrintWriter(client.clientSocket.getOutputStream(), true);
                             out.println(inputLine);

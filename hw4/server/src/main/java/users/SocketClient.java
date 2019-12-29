@@ -1,4 +1,4 @@
-package users;
+package main.java.users;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package servers;
+package main.java.utills;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,6 +1,6 @@
-package servers;
+package main.java.servers;
 
-public class Main {
+public class ServerMain {
     public static void main(String[] args) {
         String port = null;
         String properties = null;
