@@ -47,7 +47,6 @@ public class ClientHandler extends Thread {
             String inputLine;
             while ((inputLine = in.readLine()) != null) {
                 Request request = mapper.readValue(inputLine, Request.class);
-                String header = request.getHeader();
                 Response response = requestsHandler.handleRequest(request);
                 JsonCreator<Response> jsonCreator = new JsonCreator<>();
                 String json = jsonCreator.createJSON(response);
