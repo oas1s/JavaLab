@@ -6,9 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45595e2e-475d-405d-a17c-55a8393d66da" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="45595e2e-475d-405d-a17c-55a8393d66da" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -293,6 +291,7 @@
       <workItem from="1589758021226" duration="7765000" />
       <workItem from="1589787305868" duration="3441000" />
       <workItem from="1589823933461" duration="32000" />
+      <workItem from="1589824466055" duration="77000" />
     </task>
     <servers />
   </component>
@@ -448,10 +447,10 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="767" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1050@0.0.1920.1050" timestamp="1589823957806" />
-    <state x="342" y="222" key="new project wizard" timestamp="1584327183535">
+    <state x="342" y="222" key="new project wizard" timestamp="1589824541123">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="342" y="222" key="new project wizard/0.0.1920.1050@0.0.1920.1050" timestamp="1584327183535" />
+    <state x="342" y="222" key="new project wizard/0.0.1920.1050@0.0.1920.1050" timestamp="1589824541123" />
     <state x="623" y="227" width="672" height="678" key="search.everywhere.popup" timestamp="1589281256710">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
