@@ -8,7 +8,7 @@
     <title>Reg</title>
 </head>
 <body>
-<form method="post" action="/reg">
+<form method="post" action="/signUpChat">
     <input type="text" placeholder="email" name="email">
     <input type="password" name="password">
     <input type="submit">

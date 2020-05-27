@@ -9,6 +9,7 @@ import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 import ru.itis.servlets.dto.MessageDto;
 import ru.itis.servlets.dto.UserDto;
+import ru.itis.servlets.models.Message;
 import ru.itis.servlets.models.User;
 import ru.itis.servlets.security.details.UserDetailsImpl;
 
@@ -22,7 +23,7 @@ import java.util.Set;
 @EnableWebSocket
 public class WebSocketMessagesHandler extends TextWebSocketHandler {
 
-    private static final Set<WebSocketSession>  sessions = new HashSet<>();
+    private static final Map<Integer,Map<String, WebSocketSession>> sessions = new HashMap<>();
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -30,15 +31,16 @@ public class WebSocketMessagesHandler extends TextWebSocketHandler {
     @Override
     public void handleMessage(WebSocketSession session, WebSocketMessage<?> message) throws Exception {
         String messageText = (String) message.getPayload();
-        MessageDto messageDtoFromJson = objectMapper.readValue(messageText, MessageDto.class);
-        UserDetailsImpl userDetails = (UserDetailsImpl) session.getPrincipal();
-        User u = userDetails.getUser();
-        messageDtoFromJson.setFrom(u);
+        Message messageFromJson = objectMapper.readValue(messageText, Message.class);
 
+        if (!sessions.containsKey(messageFromJson.getTo())) {
+            sessions.put(messageFromJson.getTo(),new HashMap<>());
+        }
+        if (!sessions.get(messageFromJson.getTo()).containsKey(messageFromJson.getFrom())) {
+            sessions.get(messageFromJson.getTo()).put(messageFromJson.getFrom(), session);
+        }
 
-        sessions.add(session);
-
-        for (WebSocketSession currentSession : sessions) {
+        for (WebSocketSession currentSession : sessions.get(messageFromJson.getTo()).values()) {
             currentSession.sendMessage(message);
         }
     }

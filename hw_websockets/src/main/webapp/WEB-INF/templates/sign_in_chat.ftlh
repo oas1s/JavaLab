@@ -10,7 +10,7 @@
 <body>
 <h1>Sign In !</h1>
 <div>
-    <form action="/signIn" method="post">
+    <form action="/signInChat" method="post">
         <input name="email" placeholder="Email">
         <input type="password" name="password" placeholder="password">
         <input type="submit" value="Submit">

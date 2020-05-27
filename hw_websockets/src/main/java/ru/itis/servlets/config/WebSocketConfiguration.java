@@ -19,6 +19,6 @@ public class WebSocketConfiguration implements WebSocketConfigurer {
 
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry webSocketHandlerRegistry) {
-        webSocketHandlerRegistry.addHandler(handler, "/chat").setHandshakeHandler(authHandshakeHandler);
+        webSocketHandlerRegistry.addHandler(handler, "/chat").withSockJS();
     }
 }
