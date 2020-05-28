@@ -1,0 +1,8 @@
+ru\itis\servlets\models\User.class
+ru\itis\servlets\security\config\WebSecurityConfig.class
+ru\itis\servlets\repositories\CrudRepository.class
+ru\itis\servlets\repositories\UserRepositoryImpl.class
+ru\itis\servlets\models\State.class
+ru\itis\servlets\listeners\SpringContextServletContextListener.class
+ru\itis\servlets\config\ApplicationContextConfig.class
+ru\itis\servlets\models\User$UserBuilder.class
