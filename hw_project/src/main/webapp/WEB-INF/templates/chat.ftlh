@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="ru">
+<#import "spring.ftl" as spring/>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
@@ -13,11 +14,17 @@
             crossorigin="anonymous"></script>
     <script src="static/js/chat.js"></script>
 </head>
+<div>
+    <a href="?locale=ru"><@spring.message "sidebar.ru"/></a>
+</div>
+<div>
+    <a href="?locale=us"><@spring.message "sidebar.en"/></a>
+</div>
 <body onload="sendMessage('Login')">
 <div>
-    <input id="message" placeholder="Ваше сообщение">
+    <input id="message" placeholder=<@spring.message "chat.urmessage"/>>
     <button onclick="sendMessage(
-            $('#message').val())">Отправить</button>
+            $('#message').val())"><@spring.message "chat.sendmessage"/></button>
 </div>
 <div>
     <ul id="messages">

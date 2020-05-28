@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="ru">
+<#import "spring.ftl" as spring/>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -23,7 +24,7 @@
         <input type="password" name="password" placeholder="password">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
         <label>
-            <input type="checkbox" name="remember-me">Запомни меня
+            <input type="checkbox" name="remember-me"><@spring.message "reg.remember"/>
         </label>
 
         <input type="submit" value="Submit">
