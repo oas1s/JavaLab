@@ -19,7 +19,7 @@
 </div>
 <div>
     <a href="?locale=us"><@spring.message "sidebar.en"/></a>
-</div>
+</div>  
 <body onload="sendMessage('Login')">
 <div>
     <input id="message" placeholder=<@spring.message "chat.urmessage"/>>
