@@ -1,0 +1,43 @@
+use "javalab";
+
+db.createCollection("job")
+
+db.job.insert([
+    {
+        name: "Google",
+        slogan: "Do the right things"
+    },
+    {
+        name: "Netflix",
+        slogan: "See What's Next"
+    },
+]);
+
+db.job.find()
+
+db.createCollection("employee")
+
+db.employee.insert([
+    {
+        name: "Azat",
+        surname: "Fask",
+        education: "ITIS",
+        job: ObjectId("5feb36315da2e1704d9915f9")
+    },
+    {
+        name: "Djalil",
+        surname: "Rakh",
+        education: "ITIS",
+        decription: "Didnt pass all homeworks at deadline"
+    },
+    {
+        name: "Albert",
+        surname: "Manakh",
+        education: "ITIS",
+        decription: "Didnt pass all homeworks at deadline",
+        job: ObjectId("5feb36315da2e1704d9915f8"),
+        certificate: "Oracle Java Programmer"
+    }
+]);
+
+db.employee.find()
