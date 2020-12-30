@@ -1,0 +1,1 @@
+User registered with data User(id=null, name=Azat, surname=Fask, mail=azatazat835@mail.ru, age=18, passport=1231331)

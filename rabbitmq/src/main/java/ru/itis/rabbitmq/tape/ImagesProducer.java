@@ -23,9 +23,7 @@ public class ImagesProducer {
         try {
             Connection connection = connectionFactory.newConnection();
             Channel channel = connection.createChannel();
-            // создаем exchange
             channel.exchangeDeclare(EXCHANGE_NAME, EXCHANGE_TYPE);
-            // открываем файл с картинками
             String nameSurname = scanner.nextLine();
             channel.basicPublish(EXCHANGE_NAME, "",null, nameSurname.getBytes());
         } catch (IOException | TimeoutException e) {
